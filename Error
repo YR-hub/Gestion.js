@@ -1,0 +1,18 @@
+const fs = require('fs');
+
+// Función que devuelve un error con un mensaje personalizado
+function generarError(mensaje) {
+  throw new Error(mensaje);
+}
+
+// Función que registra el error en un archivo
+function registrarErrorEnArchivo(error) {
+  fs.appendFileSync('errores.log', `${new Date().toISOString()}: ${error.stack}\n`);
+}
+
+// Ejemplo de uso
+try {
+  generarError('Este es un mensaje de error personalizado');
+} catch (error) {
+  registrarErrorEnArchivo(error);
+}
